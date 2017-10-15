@@ -1,7 +1,3 @@
-// I wrote this one myself
-// It was awful.
-// The Google Maps api is astoundingly poorly-documented
-// or at least it was when I needed to use it.
 function initAutocomplete(lat,lng) {
     var center = {lat:lat, lng:lng};
     var map = new google.maps.Map(document.getElementById('map'), {
