@@ -20,16 +20,13 @@ allowed_extensions = set(['png', 'jpg', 'jpeg', 'gif'])
 def index():
     return render_template("index.html")
 
-@app.route('/search', methods=["GET"])
-def search():
-    return render_template("search.html")
-
 @app.route('/search_results', methods=["POST"])
 def search_results():
    #location = request.form['location']
    #filename = request.form['file']
    #filename = './slack.jpeg'
 
+   print(str(request.files))
    ifile = request.files['image']
    tags = getTags(ifile)
    if tags==0:
