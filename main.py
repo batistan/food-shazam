@@ -5,11 +5,15 @@ import json
 app = ClarifaiApp(api_key='eabb3a40609c4b8096054351b85d68f5')
 #img = ClImage(filename='/tmp/user/dog.jpg')
 
-def getTags(imgurl)
+def getTags(filename):
+	
 	# get the general model
 	model = app.models.get("bd367be194cf45149e75f01d59f77ba7")
 	# predict with the model
-	food=model.predict_by_url(url=imgurl)#"https://samples.clarifai.com/food.jpg")#imgurl
+	#image = ClImage(file_obj=open(filename, 'rb'))
+	#food=model.predict([image])
+
+	#food=model.predict_by_url(url=imgurl)#"https://samples.clarifai.com/food.jpg")#imgurl
 	tags=[]
 	for each in food['outputs'][0]['data']['concepts']:
 		if each['value']>0.95:
@@ -20,5 +24,7 @@ def getTags(imgurl)
 	#for each in tags:
 	#print(each)
 	return tags
+
+
 
 
