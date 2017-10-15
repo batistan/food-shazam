@@ -1,16 +1,16 @@
 from clarifai import *
-from clarifai.rest import ClarifaiApp
+from clarifai.rest import ClarifaiApp, Image
 from clarifai.rest import client
-app = ClarifaiApp(api_key='eabb3a40609c4b8096054351b85d68f5')
+appc = ClarifaiApp(api_key='eabb3a40609c4b8096054351b85d68f5')
 #img = ClImage(filename='/tmp/user/dog.jpg')
 
-def getTags(filename):
+def getTags(ifile):
 
     # get the general model
-    model = app.models.get("bd367be194cf45149e75f01d59f77ba7")
+    model = appc.models.get("bd367be194cf45149e75f01d59f77ba7")
     # predict with the model
-    #image = ClImage(file_obj=open(filename, 'rb'))
-    #food=model.predict([image])
+    image = Image(file_obj=ifile)
+    food=model.predict([image])
 
     #food=model.predict_by_url(url=imgurl)#"https://samples.clarifai.com/food.jpg")#imgurl
     tags=[]

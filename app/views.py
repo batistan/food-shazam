@@ -2,17 +2,22 @@ from . import app
 from .models import *
 import datetime as dt
 import json
-from flask import render_template, redirect, request, flash, g, session, url_for, send_file
+import os
+from flask import Flask, render_template, redirect, request, flash, g, session, url_for, send_file
+from werkzeug.utils import secure_filename
 
+#app = Flask(__name__)
 app.secret_key = "xsjnfeDSWID8erawv"
-
+#upload_folder = '/tmp/idcrave'
+allowed_extensions = set(['png', 'jpg', 'jpeg', 'gif'])
+#app.config['UPLOAD_FOLDER'] = upload_folder
 
 # home page
 # see templates directory for what this whole templates thing is about
 @app.route('/', methods=["GET"])
 @app.route('/index', methods=["GET"])
 def index():
-    return render_template("index.html", all_stations=all_stations)
+    return render_template("index.html")
 
 @app.route('/search', methods=["GET"])
 def search():
@@ -22,8 +27,10 @@ def search():
 def search_results():
    location = request.form['location']
    #filename = request.form['file']
-   filename = './slack.jpeg'
-   tags = getTags(filename)
+   #filename = './slack.jpeg'
+
+   ifile = request.files['image']
+   tags = getTags(ifile)
    if tags==0:
      results=0
 
